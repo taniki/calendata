@@ -54,3 +54,18 @@ def parse(event_id):
 
   if(page('#annonce > div').html() is not None):
     f.write( "\n".join([ l.strip() for l in page('#annonce > div').html().split('\n') ]) )
+
+def read(fh):
+  f = codecs.open(fh, "r", "utf-8")
+
+  front_matter = f.read().split("---")
+
+  if len(front_matter) > 3:
+    return {
+      'metadata' : yaml.load(front_matter[1]),
+      'abstract' : front_matter[2],
+      'content' : front_matter[3]
+    }
+  else:
+    return None
+

@@ -6,7 +6,7 @@ dataset_with_errors_dir = "tests/dataset_error"
 def test_list():
   corpus = Corpus(dataset_dir)
 
-  assert len(corpus.listdir) > 0
+  assert len(corpus.listdir) == 11
 
 def test_detect_empties():
   corpus = Corpus(dataset_with_errors_dir)

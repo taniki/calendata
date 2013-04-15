@@ -103,7 +103,8 @@ class Event:
     self.html = pq(url = self.permalink)
 
   def parse(self):
-    self.title = "%s" % self.html('#main h1 a').html()
+    if(self.html('#main h1 a').html()):
+      self.title = "%s" % self.html('#main h1 a').html()
 
     kw = self.html('#motscles ul li').html()
     self.keywords = kw.split(', ') if kw else []

@@ -41,3 +41,36 @@ def parse_results(results):
     # print a
     print "%s: %s" % (a, title)
     calenda.parser.event.parse(a)
+
+
+class Search:
+  def __init__(self, entrypoint):
+    self.entrypoint = entrypoint
+
+    self.pager_current = entrypoint
+    self.pager_next = None
+
+    self.current_html = None
+    self.current_results = []
+
+    self.count = 0
+    self.expected = 0
+
+  def scrap(self):
+    """scrap a search page and set the pager to next page"""
+
+    self.current_html = pq(url = self.pager_current)
+
+    self.pager_next = self.pager_current+'&start=%i' % (int(self.count) + 20)
+
+  def parse(self):
+    """extract list of events from a search page"""
+
+    self.current_results = self.current_html("#results .list_entry")
+    self.count += len(self.current_results)
+
+  def walk(self):
+    """switch to next page"""
+
+    self.pager_current = self.pager_next
+    self.pager_next = None

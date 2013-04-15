@@ -41,6 +41,6 @@ def test_repair_done():
   event_ok = corpus_ok.read("187015")
   event_repaired = corpus_error.read("187015")
 
-#  open(dataset_with_errors_dir+"/187015.md", 'w').close()
+  open(dataset_with_errors_dir+"/187015.md", 'w').close()
 
   assert event_ok.content == event_repaired.content

@@ -9,17 +9,21 @@ import yaml
 from pyquery import PyQuery as pq
 # import BeautifulSoup
 
-target_dir = '../_dataset_test'
+target_dir = '../_dataset'
 
 metadata_order = [ ("title", "permalink"), ("type", "subject", "categories") ]
 
 def parse(event_id):
   f = codecs.open("%s/%s.md" % (target_dir, event_id), "w", "utf-8")
 
+  print "parsing: %s" % ("http://calenda.org/%s" % event_id)
+
   metadata = {}
   metadata['permalink'] = "http://calenda.org/%s" % event_id
 
   page = pq(url = metadata['permalink'])
+
+#  print(page)
 
   metadata['title'] = "%s" % page('#main h1 a').html()
 
@@ -33,6 +37,8 @@ def parse(event_id):
 #    metadata['subject_id'] = page('#icon > span').html().strip()
 
   metadata['categories'] = [ pq(d).html() for d in page('#listcategories ul li a') ]
+
+#  print(metadata)
 
   f.write('---\n')
   yaml.safe_dump({ k : v for k,v in metadata.items() if k in metadata_order[0] }, f, default_flow_style=False, encoding=('utf-8'), allow_unicode=True)
@@ -48,12 +54,16 @@ def parse(event_id):
   f.write('---\n')
 
   if(page('#resume > div').html() is not None):
+#    print( page('#resume > div').html().strip() )
     f.write( page('#resume > div').html().strip() )
 
   f.write('\n---\n')
 
   if(page('#annonce > div').html() is not None):
+#    print( "\n".join([ l.strip() for l in page('#annonce > div').html().split('\n') ])  )
     f.write( "\n".join([ l.strip() for l in page('#annonce > div').html().split('\n') ]) )
+
+ 
 
 def read(fh):
   f = codecs.open(fh, "r", "utf-8")

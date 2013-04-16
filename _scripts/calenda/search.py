@@ -4,7 +4,7 @@ import urllib2
 
 from pyquery import PyQuery as pq
 
-import calenda.parser.event
+from calenda.event import Event
 
 def parse(url):
   "prelimenary parsing"

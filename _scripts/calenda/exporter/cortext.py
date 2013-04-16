@@ -3,22 +3,24 @@ import csv
 
 import codecs
 
-import calenda.parser.event
+from calenda.corpus import Corpus
 
-def generate(source, destination):
+def generate(corpus, destination):
   print csv
 
   export = csv.writer(open(destination, "w"), delimiter = "\t" )
 
   export.writerow(['title' , 'categories'])
 
-  for event_file in os.listdir(source):
-    event = calenda.parser.event.read(source+"/"+event_file)
+  for event_file in corpus.listdir:
 
-    if event is not None:
-      line = [ event["metadata"]["title"], "***".join(event["metadata"]["categories"]) ]
-      line = [ cell.encode("utf8")  for cell in line ]
+    (event_id, format) = event_file.split(".")
 
-      print line
+    event = corpus.read(event_id)
 
-      export.writerow(line)
+    line = [ event.title, "***".join(event.categories) ]
+    line = [ cell.encode("utf8")  for cell in line ]
+
+    print line
+
+    export.writerow(line)

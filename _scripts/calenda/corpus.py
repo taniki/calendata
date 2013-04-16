@@ -3,7 +3,7 @@ import codecs
 
 import yaml
 
-from calenda.parser.event import Event
+from calenda.event import Event
 
 metadata_order = [
   ("title", "permalink"),

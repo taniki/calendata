@@ -1,4 +1,4 @@
-from calenda.parser.event import Event 
+from calenda.event import Event 
 
 def test_scrap():
   event = Event("187021")

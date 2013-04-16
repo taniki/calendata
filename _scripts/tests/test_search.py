@@ -1,4 +1,4 @@
-from calenda.parser.search import Search
+from calenda.search import Search
 
 test_url = "http://calenda.org/search?q=*:*&primary=fdate&sort=datemisenligne_date&order=desc"
 

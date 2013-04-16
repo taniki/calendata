@@ -10,10 +10,11 @@ install:
   - "pip install coverage --use-mirrors"
   - "pip install coveralls --use-mirrors"
 
-script: nosetests -vw _scripts --with-coverage --cover-package calenda
+script: 
+  - nosetests -vw _scripts --with-coverage --cover-package calenda
 
 after_success:
-  coveralls
+  - coveralls
 
 matrix:
   allow_failures:

@@ -14,6 +14,8 @@ search.scrap()
 search.parse()
 
 while len(search.current_results) > 0 :
+  print "[loading] %s" % search.pager_current
+
   for event_id in search.current_results:
     event = corpus.read(event_id)
 

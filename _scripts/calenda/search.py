@@ -1,6 +1,7 @@
 import sys
 import codecs
 import urllib2
+import urlparse
 
 from pyquery import PyQuery as pq
 
@@ -24,7 +25,9 @@ class Search:
 
     self.current_html = pq(url = self.pager_current)
 
-    self.pager_next = self.pager_current+'&start=%i' % (int(self.count) + 20)
+    pager = "&".join([ url_part for url_part in self.pager_current.split("&") if not url_part.startswith(("start=", )) ])
+
+    self.pager_next = pager+'&start=%i' % (int(self.count) + 20)
 
   def parse(self):
     """extract list of events from a search page"""

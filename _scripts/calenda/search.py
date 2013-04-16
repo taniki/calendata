@@ -6,43 +6,6 @@ from pyquery import PyQuery as pq
 
 from calenda.event import Event
 
-def parse(url):
-  "prelimenary parsing"
-
-  print url
-
-  content = pq(url = url)
-
-  count = 0
-
-  results = content('#results .list_entry')
-
-  while len(results) > 0:
-    parse_results(results)
-
-    temp = int(count) + 20
-
-    count += len(results)
-
-    # print temp
-
-    content = pq(url = url+'&start=%i' % temp)
-    results = content('#results .list_entry')
-
-  print count
-
-def parse_results(results):
-  for result in results:
-    entry = pq(result);
-
-    a = entry('.title a').attr('href');
-    title = entry('.title a').html()
-
-    # print a
-    print "%s: %s" % (a, title)
-    calenda.parser.event.parse(a)
-
-
 class Search:
   def __init__(self, entrypoint):
     self.entrypoint = entrypoint
@@ -66,7 +29,17 @@ class Search:
   def parse(self):
     """extract list of events from a search page"""
 
-    self.current_results = self.current_html("#results .list_entry")
+    results = self.current_html("#results .list_entry")
+
+    self.current_results = []
+
+    for entry in results:
+      e = pq(entry)
+
+      event_id = e('.title a').attr('href')
+
+      self.current_results.append(event_id)
+
     self.count += len(self.current_results)
 
   def walk(self):

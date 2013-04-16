@@ -6,8 +6,6 @@ import codecs
 from calenda.corpus import Corpus
 
 def generate(corpus, destination):
-  print csv
-
   export = csv.writer(open(destination, "w"), delimiter = "\t" )
 
   export.writerow(['title' , 'categories'])

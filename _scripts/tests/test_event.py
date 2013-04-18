@@ -51,6 +51,4 @@ def test_open_misformed():
   event.set_dataset("tests/dataset_error")
   event.open()
 
-  assert event.title is None and \
-          event.abstract is None and \
-          event.content is None
+  assert event.content is None

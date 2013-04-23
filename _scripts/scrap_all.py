@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+overwrite = True
+
 from calenda.search import Search
 from calenda.corpus import Corpus
 from calenda.event import Event
@@ -19,7 +21,7 @@ while len(search.current_results) > 0 :
   for event_id in search.current_results:
     event = corpus.read(event_id)
 
-    if event.is_stored is False :
+    if overwrite or event.is_stored is False :
       print "[grabbing] %s" % event_id
 
       event = Event(event_id)

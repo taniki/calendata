@@ -7,6 +7,7 @@ from calenda.event import Event
 
 metadata_order = [
   ("title", "permalink"),
+  ("publisher",),
   ("type", "subject", "categories"),
   ("keywords", "dates")
 ]

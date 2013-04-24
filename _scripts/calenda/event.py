@@ -39,9 +39,10 @@ class Event:
     kw = self.html('#motscles ul li').html()
     self.keywords = kw.split(', ') if kw else []
 
-    self.publisher = self.html('#pubdate').html()
-    self.publisher = self.publisher.split("par")
-    self.publisher = self.publisher[1].strip()
+    if self.html('#pubdate').html() is not None:
+      self.publisher = self.html('#pubdate').html()
+      self.publisher = self.publisher.split("par")
+      self.publisher = self.publisher[1].strip()
 
     self.dates = [ pq(d).html() for d in self.html('#dates ul li') ]
 

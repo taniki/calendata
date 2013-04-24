@@ -43,6 +43,8 @@ class Event:
       self.publisher = self.html('#pubdate').html()
       self.publisher = self.publisher.split("par")
       self.publisher = self.publisher[1].strip()
+    else:
+      print self.permalink
 
     self.dates = [ pq(d).html() for d in self.html('#dates ul li') ]
 

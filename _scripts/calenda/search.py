@@ -18,6 +18,11 @@ class Search:
     self.current_results = []
 
     self.count = 0
+
+    for url_part in entrypoint.split("&"):
+      if url_part.startswith("start="):
+        self.count = int( url_part.replace("start=","") )
+
     self.expected = 0
 
   def scrap(self):

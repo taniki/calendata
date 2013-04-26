@@ -86,8 +86,10 @@ class Corpus:
 
     f.write('---\n')
 
-    f.write( event.abstract )
+    if event.abstract is not None:
+      f.write( event.abstract )
 
     f.write('\n---\n')
 
-    f.write( event.content )
+    if event.content is not None:
+      f.write( event.content )

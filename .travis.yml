@@ -12,7 +12,7 @@ install:
   - "pip install coveralls --use-mirrors"
 
 script: 
-  - nosetests -vw _scripts --with-coverage --cover-package calenda
+  - nosetests -vw _scripts
 
 after_success:
   - coveralls

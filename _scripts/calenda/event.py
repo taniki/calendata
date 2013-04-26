@@ -42,7 +42,11 @@ class Event:
     if self.html('#pubdate').html() is not None:
       self.publisher = self.html('#pubdate').html()
       self.publisher = self.publisher.split("par")
-      self.publisher = self.publisher[1].strip()
+
+      if len(self.publisher > 1):
+        self.publisher = self.publisher[1].strip()
+      else:
+        self.publisher = None
     else:
       print self.permalink
 

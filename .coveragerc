@@ -1,0 +1,5 @@
+[run]
+omit=
+  /usr/*
+  /home/*/*/lib/*
+  /home/*/virtualenv/*/lib/*

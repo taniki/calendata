@@ -43,7 +43,7 @@ class Event:
       self.publisher = self.html('#pubdate').html()
       self.publisher = self.publisher.split("par")
 
-      if len(self.publisher > 1):
+      if len(self.publisher) > 1:
         self.publisher = self.publisher[1].strip()
       else:
         self.publisher = None

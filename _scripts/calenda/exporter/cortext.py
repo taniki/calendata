@@ -15,7 +15,7 @@ def generate(corpus, destination):
   for event_file in corpus.listdir:
 
     print event_file
-    
+
     (event_id, format) = event_file.split(".")
 
     event = corpus.read(event_id)
@@ -23,9 +23,12 @@ def generate(corpus, destination):
     for m in metadata:
       if event.__dict__[m] is None:
         event.__dict__[m] = ""
+      elif isinstance(event.__dict__[m], (list, tuple)):
+        event.__dict__[m] = "***".join(event.__dict__[m])
 
-    line = [ event.title, event.subject, "***".join(event.categories), "***".join(event.keywords), event.publisher ]
-    line = [ cell.encode("utf8") for cell in line ]
+      event.__dict__[m] = event.__dict__[m].encode("utf8")
+
+    line = [ event.__dict__[m] for m in metadata ]
 
     print line
 

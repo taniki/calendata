@@ -78,8 +78,8 @@ class Event:
       if len(front_matter) > 3:
         self.metadata = yaml.load(front_matter[1])
         
-        self.title = self.metadata["title"]
-        self.permalink = self.metadata["permalink"]
+        for m in self.metadata:
+          self.__dict__[m] = self.metadata[m]
 
         self.abstract = front_matter[2]
         self.content = front_matter[3]

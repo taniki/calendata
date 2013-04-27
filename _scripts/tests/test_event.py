@@ -25,6 +25,14 @@ def test_parse_error():
           event.abstract is None and \
           event.content is None
 
+def test_no_publisher():
+  event = Event("234261")
+
+  event.scrap()
+  event.parse()
+
+  assert event.publisher is None
+
 def test_open():
   event = Event("187021")
 

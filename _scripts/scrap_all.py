@@ -6,7 +6,8 @@ from calenda.search import Search
 from calenda.corpus import Corpus
 from calenda.event import Event
 
-url = "http://calenda.org/search?q=*:*&primary=fdate&sort=datemisenligne_date&order=desc"
+# url = "http://calenda.org/search?q=*:*&primary=fdate&sort=datemisenligne_date&order=desc"
+url = "http://calenda.org/search?q=*:*&primary=fdate&sort=datemisenligne_date&order=desc&start=8640"
 dataset = "../_dataset"
 
 corpus = Corpus(dataset)

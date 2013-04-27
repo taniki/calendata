@@ -10,6 +10,11 @@ def test_scrap():
   assert search.current_html is not None and \
           search.pager_next is not None
 
+def test_restart():
+  search = Search(test_url+"&start=100")
+
+  assert search.count == 100
+
 def test_parse():
   search = Search(test_url)
 

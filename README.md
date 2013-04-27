@@ -1,4 +1,5 @@
-# Calendata [![Build Status](https://travis-ci.org/taniki/calendata.png)](https://travis-ci.org/taniki/calendata)
+# Calendata [![Build Status](https://travis-ci.org/taniki/calendata.png)](https://travis-ci.org/taniki/calendata) [![Coverage Status](https://coveralls.io/repos/taniki/calendata/badge.png?branch=master)](https://coveralls.io/r/taniki/calendata)
+
 
 Calendata is a set of python class and macros written to scrap, parse and store events from [calenda](http://calenda.org) website. It also include a jekyll website to make dataset sharing easy.
 
